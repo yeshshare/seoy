@@ -3,8 +3,14 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start:dev": "set NODE_ENV=development && node index.js",
+    "start:staging": "set NODE_ENV=staging && node index.js",
+    "start:prod": "set NODE_ENV=production && node index.js",
+    "sync-db:dev": "set NODE_ENV=development && set DB_SYNC_MODE=force && node ./config/sync-database.js",
+    "sync-db:staging": "set NODE_ENV=staging && set DB_SYNC_MODE=alter && node ./config/sync-database.js",
+    "sync-db:prod": "set NODE_ENV=production && set DB_SYNC_MODE=safe && node ./config/sync-database.js"
   },
   "keywords": [],
   "author": "",
@@ -12,7 +18,10 @@
   "dependencies": {
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
     "express": "^4.19.2",
+    "mysql2": "^3.11.0",
+    "sequelize": "^6.37.3",
     "socket.io": "^4.7.5",
     "sqlite3": "^5.1.7"
   }

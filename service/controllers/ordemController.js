@@ -1,6 +1,6 @@
 import ordemService from '../services/ordemService.js';
 
-const listarOrdens = async (req, res) => {
+export const listarOrdens = async (req, res) => {
     try {
         const ordens = await ordemService.listarOrdens();
         res.json(ordens);
@@ -9,7 +9,7 @@ const listarOrdens = async (req, res) => {
     }
 };
 
-const criarOrdem = async (req, res) => {
+export const criarOrdem = async (req, res) => {
     try {
         const novaOrdem = await ordemService.criarOrdem(req.body);
         res.status(201).json(novaOrdem);
@@ -18,7 +18,7 @@ const criarOrdem = async (req, res) => {
     }
 };
 
-const obterOrdem = async (req, res) => {
+export const obterOrdem = async (req, res) => {
     try {
         const ordem = await ordemService.obterOrdem(req.params.id);
         res.json(ordem);
@@ -27,7 +27,7 @@ const obterOrdem = async (req, res) => {
     }
 };
 
-const atualizarOrdem = async (req, res) => {
+export const atualizarOrdem = async (req, res) => {
     try {
         const resultado = await ordemService.atualizarOrdem(req.params.id, req.body);
         res.status(200).json(resultado);
@@ -36,7 +36,7 @@ const atualizarOrdem = async (req, res) => {
     }
 };
 
-const excluirOrdem = async (req, res) => {
+export const excluirOrdem = async (req, res) => {
     try {
         const resultado = await ordemService.excluirOrdem(req.params.id);
         res.status(200).json(resultado);
@@ -45,10 +45,3 @@ const excluirOrdem = async (req, res) => {
     }
 };
 
-export {
-    listarOrdens,
-    criarOrdem,
-    obterOrdem,
-    atualizarOrdem,
-    excluirOrdem
-};

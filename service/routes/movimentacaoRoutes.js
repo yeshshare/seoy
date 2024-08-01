@@ -1,5 +1,5 @@
 import express from 'express';
-import movimentacaoController from '../controllers/movimentacaoController.js';
+import * as movimentacaoController from '../controllers/movimentacaoController.js';
 
 const router = express.Router();
 

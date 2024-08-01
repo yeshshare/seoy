@@ -1,4 +1,4 @@
-import * as estoqueService from '../services/estoqueService';
+import * as estoqueService from '../services/estoqueService.js';
 
 export const listarEstoques = async (req, res, next) => {
     try {

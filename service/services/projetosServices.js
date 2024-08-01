@@ -1,6 +1,6 @@
 import db from '../config/database.js';
 
-const listarProjetos = () => {
+export const listarProjetos = () => {
     return new Promise((resolve, reject) => {
         db.all('SELECT * FROM projetos', [], (err, rows) => {
             if (err) {
@@ -12,7 +12,7 @@ const listarProjetos = () => {
     });
 };
 
-const criarProjeto = (data) => {
+export const criarProjeto = (data) => {
     return new Promise((resolve, reject) => {
         const { nome, descricao } = data;
         db.run('INSERT INTO projetos (nome, descricao) VALUES (?, ?)', [nome, descricao], function (err) {
@@ -25,7 +25,7 @@ const criarProjeto = (data) => {
     });
 };
 
-const obterProjeto = (id) => {
+export const obterProjeto = (id) => {
     return new Promise((resolve, reject) => {
         db.get('SELECT * FROM projetos WHERE id = ?', [id], (err, row) => {
             if (err) {
@@ -37,7 +37,7 @@ const obterProjeto = (id) => {
     });
 };
 
-const atualizarProjeto = (id, data) => {
+export const atualizarProjeto = (id, data) => {
     return new Promise((resolve, reject) => {
         const { nome, descricao } = data;
         db.run('UPDATE projetos SET nome = ?, descricao = ? WHERE id = ?', [nome, descricao, id], function (err) {
@@ -50,7 +50,7 @@ const atualizarProjeto = (id, data) => {
     });
 };
 
-const excluirProjeto = (id) => {
+export const excluirProjeto = (id) => {
     return new Promise((resolve, reject) => {
         db.run('DELETE FROM projetos WHERE id = ?', [id], function (err) {
             if (err) {
@@ -62,10 +62,4 @@ const excluirProjeto = (id) => {
     });
 };
 
-export default {
-    listarProjetos,
-    criarProjeto,
-    obterProjeto,
-    atualizarProjeto,
-    excluirProjeto
-};
+

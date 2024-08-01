@@ -1,6 +1,6 @@
-import movimentacaoService from '../services/movimentacaoService.js';
+import * as movimentacaoService from '../services/movimentacaoService.js';
 
-const registrarMovimentacao = async (req, res) => {
+export const registrarMovimentacao = async (req, res) => {
     try {
         const { tipo, estoqueId, produtoId, quantidade, data } = req.body;
         const movimentacao = await movimentacaoService.registrarMovimentacao(tipo, estoqueId, produtoId, quantidade, data);
@@ -10,7 +10,7 @@ const registrarMovimentacao = async (req, res) => {
     }
 };
 
-const listarMovimentacoes = async (req, res) => {
+export const listarMovimentacoes = async (req, res) => {
     try {
         const movimentacoes = await movimentacaoService.listarMovimentacoes();
         res.json(movimentacoes);
@@ -19,7 +19,4 @@ const listarMovimentacoes = async (req, res) => {
     }
 };
 
-export {
-    registrarMovimentacao,
-    listarMovimentacoes
-};
+

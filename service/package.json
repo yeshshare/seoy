@@ -5,12 +5,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start:dev": "set NODE_ENV=development && node index.js",
-    "start:staging": "set NODE_ENV=staging && node index.js",
-    "start:prod": "set NODE_ENV=production && node index.js",
-    "sync-db:dev": "set NODE_ENV=development && set DB_SYNC_MODE=force && node ./config/sync-database.js",
-    "sync-db:staging": "set NODE_ENV=staging && set DB_SYNC_MODE=alter && node ./config/sync-database.js",
-    "sync-db:prod": "set NODE_ENV=production && set DB_SYNC_MODE=safe && node ./config/sync-database.js"
+    "start": "node index.js",
+    "sync-db": "node ./config/sync-database.js"
   },
   "keywords": [],
   "author": "",

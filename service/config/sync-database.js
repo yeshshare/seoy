@@ -3,6 +3,7 @@ import Estoque from '../models/estoque.js';
 import Ordem from '../models/ordem.js';
 import Projeto from '../models/projeto.js';
 import Movimentacao from '../models/movimentacao.js';
+import Usuario from '../models/usuario.js';
 
 // Se necessário, registre associações ou outras configurações aqui
 

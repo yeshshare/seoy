@@ -1,11 +1,23 @@
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
 body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
 }
-.login-container, .dashboard-container, .stock-container, .entry-exit-container, .service-orders-container, .projects-container, .reports-container {
+
+.login-container,
+.dashboard-container,
+.stock-container,
+.entry-exit-container,
+.service-orders-container,
+.projects-container,
+.reports-container {
   padding: 20px;
 }
-h1, h2, h3 {
+
+h1,
+h2,
+h3 {
   color: #333;
 }

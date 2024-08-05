@@ -8,7 +8,7 @@ export const AuthProvider = ({ children }) => {
 
     const login = async (email, password) => {
         try {
-            const response = await api.post('/api/usuarios/login', { email, senha: password });
+            const response = await api.post('/api/users/login', { email, password });
             if (response.status === 200) {
                 const userData = response.data;
                 setAuthState({ isAuthenticated: true, user: userData });

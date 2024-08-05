@@ -31,7 +31,7 @@ if /i "%PROJECT_TYPE%"=="frontend" (
     if exist "%SERVICE_PATH%" (
         echo Starting service project
         cd "%SERVICE_PATH%"
-        npm run start
+        npm run dev
         cd /d %~dp0
     ) else (
         echo Service directory %SERVICE_PATH% does not exist.

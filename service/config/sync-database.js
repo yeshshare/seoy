@@ -1,22 +1,22 @@
 import sequelize from './database.js';
-import Estoque from '../models/estoque.js';
-import Ordem from '../models/ordem.js';
-import Projeto from '../models/projeto.js';
-import Movimentacao from '../models/movimentacao.js';
-import Usuario from '../models/usuario.js';
+import Stock from '../models/stock.js';
+import Order from '../models/order.js';
+import Project from '../models/project.js';
+import Movement from '../models/movement.js';
+import User from '../models/user.js';
 
-// Se necessário, registre associações ou outras configurações aqui
+// If necessary, register associations or other configurations here
 
 async function syncDatabase() {
     const environment = process.env.NODE_ENV || 'development';
     const syncMode =
         environment === 'development' ? process.env.DEVELOPMENT_DB_SYNC_MODE :
             environment === 'production' ? process.env.PRODUCTION_DB_SYNC_MODE :
-                environment === 'homolog' ? process.env.HOMOLOG_DB_SYNC_MODE :
-                    process.env.DB_SYNC_MODE || 'safe'; // 'safe' é o padrão
+                environment === 'staging' ? process.env.STAGING_DB_SYNC_MODE :
+                    process.env.DB_SYNC_MODE || 'safe'; // 'safe' is the default
 
-    console.log(`environment : ${environment}`);
-    console.log(`syncMode : ${syncMode}`);
+    console.log(`Environment: ${environment}`);
+    console.log(`Sync Mode: ${syncMode}`);
 
     const syncOptions =
         syncMode === 'force' ? { force: true } :
@@ -25,9 +25,9 @@ async function syncDatabase() {
 
     try {
         await sequelize.sync(syncOptions);
-        console.log('Banco de dados e tabelas sincronizados com sucesso!');
+        console.log('Database and tables synchronized successfully!');
     } catch (error) {
-        console.error('Erro ao sincronizar o banco de dados:', error);
+        console.error('Error synchronizing the database:', error);
     }
 }
 

@@ -14,18 +14,18 @@ app.use(cors());
 app.use(bodyParser.json());
 
 // Importação de rotas
-import estoqueRoutes from './routes/estoqueRoutes.js';
-import ordemRoutes from './routes/ordemRoutes.js';
-import projetoRoutes from './routes/projetoRoutes.js';
-import movimentacaoRoutes from './routes/movimentacaoRoutes.js';
-import usuarioRoutes from './routes/usuarioRoutes.js';
+import stockRoutes from './routes/stockRoutes.js';
+import orderRoutes from './routes/orderRoutes.js';
+import projectRoutes from './routes/projectRoutes.js';
+import movementRoutes from './routes/movementRoutes.js';
+import userRoutes from './routes/userRoutes.js';
 
 // Uso das rotas
-app.use('/api/usuarios', usuarioRoutes);
-app.use('/api/estoques', estoqueRoutes);
-app.use('/api/ordens', ordemRoutes);
-app.use('/api/projetos', projetoRoutes);
-app.use('/api/movimentacoes', movimentacaoRoutes);
+app.use('/api/users', userRoutes);
+app.use('/api/stocks', stockRoutes);
+app.use('/api/orders', orderRoutes);
+app.use('/api/projects', projectRoutes);
+app.use('/api/movements', movementRoutes);
 
 
 // Configuração do WebSocket

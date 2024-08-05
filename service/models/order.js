@@ -1,20 +1,28 @@
 import { DataTypes } from 'sequelize';
 import sequelize from '../config/database.js';
 
-const Ordem = sequelize.define('Ordem', {
-    clienteId: {
+const Order = sequelize.define('Order', {
+    clientId: {
         type: DataTypes.STRING,
     },
-    projetoId: {
+    projectId: {
         type: DataTypes.STRING,
     },
     status: {
         type: DataTypes.STRING,
     },
-    dataCriacao: {
+    creationDate: {
         type: DataTypes.DATE,
         defaultValue: DataTypes.NOW,
     },
+    isActive: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: true,
+    },
+    isDeleted: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
+    },
 });
 
-export default Ordem;
+export default Order;

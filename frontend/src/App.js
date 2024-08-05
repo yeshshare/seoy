@@ -1,4 +1,3 @@
-// App.js
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import LoginPage from './pages/LoginPage';
@@ -8,49 +7,54 @@ import EntryExitPage from './pages/EntryExitPage';
 import ServiceOrdersPage from './pages/ServiceOrdersPage';
 import ProjectsPage from './pages/ProjectsPage';
 import ReportsPage from './pages/ReportsPage';
-import { useAuth } from './contexts/authContext';
+import { AuthProvider, useAuth } from './contexts/authContext';
+import Layout from './components/Layout'; // Certifique-se de que o Layout está sendo importado
 import './App.css';
 
-const App = () => {
-  const { authState } = useAuth(); // Obtenha o estado de autenticação
+// Componente de rota protegida
+const ProtectedRoute = ({ element }) => {
+  const { authState } = useAuth();
+  console.log('ProtectedRoute authState:', authState);
 
+  return authState.isAuthenticated ? element : <Navigate to="/login" />;
+};
+
+const App = () => {
   return (
-    <Router>
-      <Routes>
-        <Route
-          path="/login"
-          element={authState.isAuthenticated ? <Navigate to="/dashboard" /> : <LoginPage />}
-        />
-        <Route
-          path="/dashboard"
-          element={authState.isAuthenticated ? <DashboardPage /> : <Navigate to="/login" />}
-        />
-        <Route
-          path="/estoques"
-          element={authState.isAuthenticated ? <StockPage /> : <Navigate to="/login" />}
-        />
-        <Route
-          path="/entrada-saida"
-          element={authState.isAuthenticated ? <EntryExitPage /> : <Navigate to="/login" />}
-        />
-        <Route
-          path="/ordens"
-          element={authState.isAuthenticated ? <ServiceOrdersPage /> : <Navigate to="/login" />}
-        />
-        <Route
-          path="/projetos"
-          element={authState.isAuthenticated ? <ProjectsPage /> : <Navigate to="/login" />}
-        />
-        <Route
-          path="/relatorios"
-          element={authState.isAuthenticated ? <ReportsPage /> : <Navigate to="/login" />}
-        />
-        <Route
-          path="/"
-          element={authState.isAuthenticated ? <Navigate to="/dashboard" /> : <Navigate to="/login" />}
-        />
-      </Routes>
-    </Router>
+    <AuthProvider>
+      <Router>
+        <Routes>
+          <Route path="/login" element={<LoginPage />} />
+          <Route element={<Layout />}> {/* Incluindo o Layout */}
+            <Route
+              path="/dashboard"
+              element={<ProtectedRoute element={<DashboardPage />} />}
+            />
+            <Route
+              path="/estoques"
+              element={<ProtectedRoute element={<StockPage />} />}
+            />
+            <Route
+              path="/entrada-saida"
+              element={<ProtectedRoute element={<EntryExitPage />} />}
+            />
+            <Route
+              path="/ordens"
+              element={<ProtectedRoute element={<ServiceOrdersPage />} />}
+            />
+            <Route
+              path="/projetos"
+              element={<ProtectedRoute element={<ProjectsPage />} />}
+            />
+            <Route
+              path="/relatorios"
+              element={<ProtectedRoute element={<ReportsPage />} />}
+            />
+            <Route path="/" element={<Navigate to="/login" />} />
+          </Route>
+        </Routes>
+      </Router>
+    </AuthProvider>
   );
 };
 

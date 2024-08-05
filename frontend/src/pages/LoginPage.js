@@ -1,16 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../contexts/authContext.js'; // Importa o hook do contexto
-import './Login.css';
+import { useAuth } from '../contexts/authContext';
+import './Login.css'; // Inclua o CSS específico
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
-  const { login } = useAuth(); // Usa o hook para obter a função de login
+  const { authState, login } = useAuth();
+
+  // Verificar se o usuário já está autenticado
+  useEffect(() => {
+    console.log(`isAuthenticated : ${authState.isAuthenticated}`);
+    if (authState.isAuthenticated) {
+      navigate('/dashboard'); // Redireciona para o dashboard se o usuário já estiver autenticado
+    }
+  }, [authState.isAuthenticated, navigate]);
 
   const handleLogin = async (e) => {
-    e.preventDefault(); // Evita o comportamento padrão do formulário
+    e.preventDefault();
 
     const isAuthenticated = await login(email, password);
 
@@ -22,7 +30,7 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="login-page d-flex justify-content-center align-items-center min-vh-100">
+    <div className="login-page">
       <div className="login-card card p-4">
         <h1 className="text-center mb-4">Login</h1>
         <form onSubmit={handleLogin}>

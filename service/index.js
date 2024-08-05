@@ -18,12 +18,15 @@ import estoqueRoutes from './routes/estoqueRoutes.js';
 import ordemRoutes from './routes/ordemRoutes.js';
 import projetoRoutes from './routes/projetoRoutes.js';
 import movimentacaoRoutes from './routes/movimentacaoRoutes.js';
+import usuarioRoutes from './routes/usuarioRoutes.js';
 
 // Uso das rotas
+app.use('/api/usuarios', usuarioRoutes);
 app.use('/api/estoques', estoqueRoutes);
 app.use('/api/ordens', ordemRoutes);
 app.use('/api/projetos', projetoRoutes);
 app.use('/api/movimentacoes', movimentacaoRoutes);
+
 
 // Configuração do WebSocket
 io.on('connection', (socket) => {

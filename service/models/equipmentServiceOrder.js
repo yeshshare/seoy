@@ -1,8 +1,8 @@
 import { DataTypes } from 'sequelize';
 import sequelize from '../config/database.js';
-import Product from './product.js';
+import Equipment from './equipment.js';
 
-const ProductServiceOrder = sequelize.define('ProductServiceOrder', {
+const EquipmentServiceOrder = sequelize.define('EquipmentServiceOrder', {
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
@@ -16,10 +16,10 @@ const ProductServiceOrder = sequelize.define('ProductServiceOrder', {
         //     key: 'id',
         // },
     },
-    productId: {
+    equipmentId: {
         type: DataTypes.INTEGER,
         references: {
-            model: Product,
+            model: Equipment,
             key: 'id',
         },
         allowNull: false,
@@ -30,4 +30,4 @@ const ProductServiceOrder = sequelize.define('ProductServiceOrder', {
     },
 });
 
-export default ProductServiceOrder;
+export default EquipmentServiceOrder;

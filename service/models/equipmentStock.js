@@ -1,9 +1,9 @@
 import { DataTypes } from 'sequelize';
 import sequelize from '../config/database.js';
 import Stock from './stock.js';
-import Product from './product.js';
+import Equipment from './equipment.js';
 
-const ProductStock = sequelize.define('ProductStock', {
+const EquipmentStock = sequelize.define('EquipmentStock', {
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
@@ -17,14 +17,14 @@ const ProductStock = sequelize.define('ProductStock', {
         },
         allowNull: false,
     },
-    productId: {
+    equipmentId: {
         type: DataTypes.INTEGER,
         references: {
-            model: Product,
+            model: Equipment,
             key: 'id',
         },
         allowNull: false,
     },
 });
 
-export default ProductStock;
+export default EquipmentStock;

@@ -2,6 +2,7 @@ import User from '../models/user.js';
 
 // Create a new user
 export const createUser = async (data) => {
+    console.log(data);
     const newUser = await User.create(data);
     return { user: newUser, created: true };
 };
@@ -18,10 +19,16 @@ export const getUserById = async (id, includeDeleted = false) => {
     return await User.findOne({ where: condition });
 };
 
+// Get a list of users, considering the filter for isDeleted
+export const getUsers = async (includeDeleted = false) => {
+    const condition = includeDeleted ? {} : { isDeleted: false };
+    return await User.findAll({ where: condition });
+};
+
 // Update an existing user
 export const updateUser = async (id, data) => {
     const existingUser = await User.findByPk(id);
-
+    console.log(data);
     if (existingUser) {
         await User.update(data, { where: { id } });
         return { user: await User.findByPk(id), updated: true };
@@ -32,10 +39,11 @@ export const updateUser = async (id, data) => {
 
 // Create or update the user based on its existence in the database
 export const createOrUpdateUser = async (data) => {
-    const existingUser = await User.findByPk(data.id);
+    const existingUser = await getUserByEmail(data.email);
+
 
     if (existingUser) {
-        return await updateUser(data.id, data);
+        return await updateUser(existingUser.id, data);
     } else {
         return await createUser(data);
     }

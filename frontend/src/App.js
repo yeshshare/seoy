@@ -10,6 +10,7 @@ import ReportsPage from './pages/ReportsPage';
 import { AuthProvider, useAuth } from './contexts/authContext';
 import Layout from './components/Layout'; // Certifique-se de que o Layout está sendo importado
 import './App.css';
+import UserPage from './pages/UserPage';
 
 // Componente de rota protegida
 const ProtectedRoute = ({ element }) => {
@@ -50,6 +51,11 @@ const App = () => {
               path="/relatorios"
               element={<ProtectedRoute element={<ReportsPage />} />}
             />
+            <Route
+              path="/users"
+              element={<ProtectedRoute element={<UserPage />} />}
+            />
+
             <Route path="/" element={<Navigate to="/login" />} />
           </Route>
         </Routes>

@@ -1,0 +1,336 @@
+Com base no código que você forneceu, aqui estão os endpoints da API REST para o recurso `User`, junto com uma breve descrição de cada um:
+
+### Endpoints da API REST para `User`
+
+1. **Registrar Usuário**
+   - **Método**: `POST`
+   - **Rota**: `/api/users/register`
+   - **Descrição**: Registra um novo usuário. Pode criar ou atualizar um usuário com base na query string `createOrUpdate`.
+
+2. **Login do Usuário**
+   - **Método**: `POST`
+   - **Rota**: `/api/users/login`
+   - **Descrição**: Faz login do usuário e retorna um token JWT se as credenciais forem válidas.
+
+3. **Listar Usuários**
+   - **Método**: `GET`
+   - **Rota**: `/api/users/`
+   - **Descrição**: Obtém a lista de usuários. Pode incluir usuários excluídos com base na query string `includeDeleted`.
+
+4. **Obter Usuário Específico**
+   - **Método**: `GET`
+   - **Rota**: `/api/users/:id`
+   - **Descrição**: Obtém detalhes de um usuário específico com base no ID fornecido. Pode incluir usuários excluídos com base na query string `includeDeleted`.
+
+5. **Atualizar Usuário**
+   - **Método**: `PUT`
+   - **Rota**: `/api/users/:id`
+   - **Descrição**: Atualiza as informações de um usuário específico. Se uma nova senha for fornecida, ela será criptografada antes da atualização.
+
+6. **Excluir Usuário**
+   - **Método**: `DELETE`
+   - **Rota**: `/api/users/:id`
+   - **Descrição**: Marca um usuário como excluído. O usuário não é removido do banco de dados, mas é considerado excluído logicamente.
+
+
+Aqui estão os endpoints da API REST para o recurso `Stock`, com base no código fornecido:
+
+### Endpoints da API REST para `Stock`
+
+1. **Listar Estoques**
+   - **Método**: `GET`
+   - **Rota**: `/api/stocks/`
+   - **Descrição**: Obtém a lista de todos os estoques. Pode incluir estoques deletados com base na query string `includeDeleted`.
+
+2. **Criar Estoque**
+   - **Método**: `POST`
+   - **Rota**: `/api/stocks/`
+   - **Descrição**: Cria um novo estoque. Pode criar ou atualizar um estoque existente com base na query string `createOrUpdate`.
+
+3. **Obter Estoque Específico**
+   - **Método**: `GET`
+   - **Rota**: `/api/stocks/:id`
+   - **Descrição**: Obtém detalhes de um estoque específico com base no ID fornecido. Pode incluir estoques deletados com base na query string `includeDeleted`.
+
+4. **Atualizar Estoque**
+   - **Método**: `PUT`
+   - **Rota**: `/api/stocks/:id`
+   - **Descrição**: Atualiza as informações de um estoque específico com base no ID fornecido.
+
+5. **Excluir Estoque**
+   - **Método**: `DELETE`
+   - **Rota**: `/api/stocks/:id`
+   - **Descrição**: Marca um estoque como excluído. O estoque não é removido fisicamente do banco de dados, mas é considerado excluído logicamente.
+
+Se precisar de mais alguma coisa ou quiser seguir para os próximos recursos, é só avisar!
+
+Aqui estão os endpoints da API REST para o recurso `Order`, com base no código fornecido:
+
+### Endpoints da API REST para `Order`
+
+1. **Listar Ordens**
+   - **Método**: `GET`
+   - **Rota**: `/api/orders/`
+   - **Descrição**: Obtém a lista de todas as ordens. Pode incluir ordens deletadas com base na query string `includeDeleted`.
+
+2. **Criar Ordem**
+   - **Método**: `POST`
+   - **Rota**: `/api/orders/`
+   - **Descrição**: Cria uma nova ordem. Pode criar ou atualizar uma ordem existente com base na query string `createOrUpdate`.
+
+3. **Obter Ordem Específica**
+   - **Método**: `GET`
+   - **Rota**: `/api/orders/:id`
+   - **Descrição**: Obtém detalhes de uma ordem específica com base no ID fornecido. Pode incluir ordens deletadas com base na query string `includeDeleted`.
+
+4. **Atualizar Ordem**
+   - **Método**: `PUT`
+   - **Rota**: `/api/orders/:id`
+   - **Descrição**: Atualiza as informações de uma ordem específica com base no ID fornecido.
+
+5. **Excluir Ordem**
+   - **Método**: `DELETE`
+   - **Rota**: `/api/orders/:id`
+   - **Descrição**: Marca uma ordem como excluída. A ordem não é removida fisicamente do banco de dados, mas é considerada excluída logicamente.
+
+
+Aqui estão os endpoints da API REST para o recurso `Order`, com base no código fornecido:
+
+### Endpoints da API REST para `Order`
+
+1. **Listar Ordens**
+   - **Método**: `GET`
+   - **Rota**: `/api/orders/`
+   - **Descrição**: Obtém a lista de todas as ordens. Pode incluir ordens deletadas com base na query string `includeDeleted`.
+
+2. **Criar Ordem**
+   - **Método**: `POST`
+   - **Rota**: `/api/orders/`
+   - **Descrição**: Cria uma nova ordem. Pode criar ou atualizar uma ordem existente com base na query string `createOrUpdate`.
+
+3. **Obter Ordem Específica**
+   - **Método**: `GET`
+   - **Rota**: `/api/orders/:id`
+   - **Descrição**: Obtém detalhes de uma ordem específica com base no ID fornecido. Pode incluir ordens deletadas com base na query string `includeDeleted`.
+
+4. **Atualizar Ordem**
+   - **Método**: `PUT`
+   - **Rota**: `/api/orders/:id`
+   - **Descrição**: Atualiza as informações de uma ordem específica com base no ID fornecido.
+
+5. **Excluir Ordem**
+   - **Método**: `DELETE`
+   - **Rota**: `/api/orders/:id`
+   - **Descrição**: Marca uma ordem como excluída. A ordem não é removida fisicamente do banco de dados, mas é considerada excluída logicamente.
+
+
+Aqui estão os endpoints da API REST para o recurso `Project`, com base no código fornecido:
+
+### Endpoints da API REST para `Project`
+
+1. **Listar Projetos**
+   - **Método**: `GET`
+   - **Rota**: `/api/projects/`
+   - **Descrição**: Obtém a lista de todos os projetos. Pode incluir projetos deletados com base na query string `includeDeleted`.
+
+2. **Criar Projeto**
+   - **Método**: `POST`
+   - **Rota**: `/api/projects/`
+   - **Descrição**: Cria um novo projeto. Pode criar ou atualizar um projeto existente com base na query string `createOrUpdate`.
+
+3. **Obter Projeto Específico**
+   - **Método**: `GET`
+   - **Rota**: `/api/projects/:id`
+   - **Descrição**: Obtém detalhes de um projeto específico com base no ID fornecido. Pode incluir projetos deletados com base na query string `includeDeleted`.
+
+4. **Atualizar Projeto**
+   - **Método**: `PUT`
+   - **Rota**: `/api/projects/:id`
+   - **Descrição**: Atualiza as informações de um projeto específico com base no ID fornecido.
+
+5. **Excluir Projeto**
+   - **Método**: `DELETE`
+   - **Rota**: `/api/projects/:id`
+   - **Descrição**: Marca um projeto como excluído. O projeto não é removido fisicamente do banco de dados, mas é considerado excluído logicamente.
+
+
+Aqui estão os endpoints da API REST para o recurso `Movement`, com base no código fornecido:
+
+### Endpoints da API REST para `Movement`
+
+1. **Registrar Movimento de Entrada**
+   - **Método**: `POST`
+   - **Rota**: `/api/movements/entrada`
+   - **Descrição**: Registra um movimento de entrada de estoque. Requer um corpo de requisição com os detalhes do movimento (`type`, `stockId`, `productId`, `quantity`, `date`).
+
+2. **Registrar Movimento de Saída**
+   - **Método**: `POST`
+   - **Rota**: `/api/movements/saida`
+   - **Descrição**: Registra um movimento de saída de estoque. Requer um corpo de requisição com os detalhes do movimento (`type`, `stockId`, `productId`, `quantity`, `date`).
+
+3. **Listar Movimentos**
+   - **Método**: `GET`
+   - **Rota**: `/api/movements/`
+   - **Descrição**: Obtém a lista de todos os movimentos. Pode incluir movimentos deletados com base na query string `includeDeleted`.
+
+Se precisar de mais detalhes ou tiver outros recursos para revisar, estou à disposição!
+
+Aqui está a lista de comandos `curl` para testar todos os endpoints que revisamos:
+
+### `Stock` Endpoints
+
+1. **Listar Estoques**
+   ```bash
+   curl -X GET 'http://localhost:5000/api/stocks?includeDeleted=true'
+   ```
+
+2. **Criar Estoque**
+   ```bash
+   curl -X POST 'http://localhost:5000/api/stocks?createOrUpdate=false' \
+   -H 'Content-Type: application/json' \
+   -d '{"name": "Novo Estoque", "address": "Endereço", "hasAddress": true}'
+   ```
+
+3. **Atualizar Estoque**
+   ```bash
+   curl -X PUT 'http://localhost:5000/api/stocks/{id}' \
+   -H 'Content-Type: application/json' \
+   -d '{"name": "Estoque Atualizado", "address": "Novo Endereço", "hasAddress": false}'
+   ```
+
+4. **Obter Estoque**
+   ```bash
+   curl -X GET 'http://localhost:5000/api/stocks/{id}?includeDeleted=true'
+   ```
+
+5. **Deletar Estoque**
+   ```bash
+   curl -X DELETE 'http://localhost:5000/api/stocks/{id}'
+   ```
+
+### `Order` Endpoints
+
+1. **Listar Pedidos**
+   ```bash
+   curl -X GET 'http://localhost:5000/api/orders?includeDeleted=true'
+   ```
+
+2. **Criar Pedido**
+   ```bash
+   curl -X POST 'http://localhost:5000/api/orders?createOrUpdate=false' \
+   -H 'Content-Type: application/json' \
+   -d '{"clientId": "cliente1", "projectId": "projeto1", "status": "pendente"}'
+   ```
+
+3. **Atualizar Pedido**
+   ```bash
+   curl -X PUT 'http://localhost:5000/api/orders/{id}' \
+   -H 'Content-Type: application/json' \
+   -d '{"status": "concluído"}'
+   ```
+
+4. **Obter Pedido**
+   ```bash
+   curl -X GET 'http://localhost:5000/api/orders/{id}?includeDeleted=true'
+   ```
+
+5. **Deletar Pedido**
+   ```bash
+   curl -X DELETE 'http://localhost:5000/api/orders/{id}'
+   ```
+
+### `Project` Endpoints
+
+1. **Listar Projetos**
+   ```bash
+   curl -X GET 'http://localhost:5000/api/projects?includeDeleted=true'
+   ```
+
+2. **Criar Projeto**
+   ```bash
+   curl -X POST 'http://localhost:5000/api/projects?createOrUpdate=false' \
+   -H 'Content-Type: application/json' \
+   -d '{"name": "Novo Projeto", "description": "Descrição do Projeto"}'
+   ```
+
+3. **Atualizar Projeto**
+   ```bash
+   curl -X PUT 'http://localhost:5000/api/projects/{id}' \
+   -H 'Content-Type: application/json' \
+   -d '{"description": "Descrição Atualizada"}'
+   ```
+
+4. **Obter Projeto**
+   ```bash
+   curl -X GET 'http://localhost:5000/api/projects/{id}?includeDeleted=true'
+   ```
+
+5. **Deletar Projeto**
+   ```bash
+   curl -X DELETE 'http://localhost:5000/api/projects/{id}'
+   ```
+
+### `Movement` Endpoints
+
+1. **Registrar Movimento de Entrada**
+   ```bash
+   curl -X POST 'http://localhost:5000/api/movements/entrada' \
+   -H 'Content-Type: application/json' \
+   -d '{"type": "entry", "stockId": 1, "productId": "produto1", "quantity": 10, "date": "2024-08-08T10:00:00Z"}'
+   ```
+
+2. **Registrar Movimento de Saída**
+   ```bash
+   curl -X POST 'http://localhost:5000/api/movements/saida' \
+   -H 'Content-Type: application/json' \
+   -d '{"type": "exit", "stockId": 1, "productId": "produto1", "quantity": 5, "date": "2024-08-08T11:00:00Z"}'
+   ```
+
+3. **Listar Movimentos**
+   ```bash
+   curl -X GET 'http://localhost:5000/api/movements?includeDeleted=true'
+   ```
+
+4. **Obter Movimento**
+   ```bash
+   curl -X GET 'http://localhost:5000/api/movements/{id}?includeDeleted=true'
+   ```
+
+5. **Deletar Movimento**
+   ```bash
+   curl -X DELETE 'http://localhost:5000/api/movements/{id}'
+   ```
+
+Aqui estão os comandos `curl` para os endpoints relacionados aos `Users`, seguindo o padrão dos anteriores:
+
+### `User` Endpoints
+
+1. **Listar Usuários**
+   ```bash
+   curl -X GET 'http://localhost:5000/api/users?includeDeleted=true'
+   ```
+
+2. **Criar Usuário**
+   ```bash
+   curl -X POST 'http://localhost:5000/api/users?createOrUpdate=false' \
+   -H 'Content-Type: application/json' \
+   -d '{"username": "novoUsuario", "email": "usuario@exemplo.com", "isActive": true}'
+   ```
+
+3. **Atualizar Usuário**
+   ```bash
+   curl -X PUT 'http://localhost:5000/api/users/{id}' \
+   -H 'Content-Type: application/json' \
+   -d '{"email": "novoEmail@exemplo.com", "isActive": false}'
+   ```
+
+4. **Obter Usuário**
+   ```bash
+   curl -X GET 'http://localhost:5000/api/users/{id}?includeDeleted=true'
+   ```
+
+5. **Deletar Usuário**
+   ```bash
+   curl -X DELETE 'http://localhost:5000/api/users/{id}'
+   ```
+

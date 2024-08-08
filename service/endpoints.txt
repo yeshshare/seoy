@@ -314,7 +314,7 @@ Aqui estão os comandos `curl` para os endpoints relacionados aos `Users`, segui
    ```bash
    curl -X POST 'http://localhost:5000/api/users?createOrUpdate=false' \
    -H 'Content-Type: application/json' \
-   -d '{"username": "novoUsuario", "email": "usuario@exemplo.com", "isActive": true}'
+   -d '{"name": "novoUsuario", "email": "usuario@exemplo.com","password": "senha" , "isActive": true}'
    ```
 
 3. **Atualizar Usuário**

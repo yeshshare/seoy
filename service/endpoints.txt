@@ -334,3 +334,83 @@ Aqui estão os comandos `curl` para os endpoints relacionados aos `Users`, segui
    curl -X DELETE 'http://localhost:5000/api/users/{id}'
    ```
 
+Sim, com base nos pontos de entrada fornecidos e as rotas definidas, os endpoints ficam organizados da seguinte forma:
+
+### **1. Endpoints para Equipamento**
+
+- **Listar Todos os Equipamentos**
+  - **Endpoint:** `GET /api/equipaments`
+  - **Descrição:** Obtém todos os equipamentos.
+  - **Exemplo de cURL:**
+    ```bash
+    curl -X GET "http://localhost:5000/api/equipaments"
+    ```
+
+- **Obter Equipamento por ID**
+  - **Endpoint:** `GET /api/equipaments/:id`
+  - **Descrição:** Obtém um equipamento específico pelo ID.
+  - **Exemplo de cURL:**
+    ```bash
+    curl -X GET "http://localhost:5000/api/equipaments/1"
+    ```
+
+- **Listar Equipamentos por Categoria e Subcategoria**
+  - **Endpoint:** `GET /api/equipaments/by-category/:categoryName/:subcategoryName`
+  - **Descrição:** Obtém todos os equipamentos filtrados pela categoria e subcategoria.
+  - **Exemplo de cURL:**
+    ```bash
+    curl -X GET "http://localhost:5000/api/equipaments/by-category/Hardware/Laptops"
+    ```
+
+### **2. Endpoints para Categoria**
+
+- **Listar Todas as Categorias**
+  - **Endpoint:** `GET /api/categorys`
+  - **Descrição:** Obtém todas as categorias.
+  - **Exemplo de cURL:**
+    ```bash
+    curl -X GET "http://localhost:5000/api/categorys"
+    ```
+
+- **Obter Categoria por Nome**
+  - **Endpoint:** `GET /api/categorys/:name`
+  - **Descrição:** Obtém uma categoria específica pelo nome.
+  - **Exemplo de cURL:**
+    ```bash
+    curl -X GET "http://localhost:5000/api/categorys/Hardware"
+    ```
+
+### **3. Endpoints para Subcategoria**
+
+- **Listar Subcategorias por Categoria**
+  - **Endpoint:** `GET /api/subcategorys/by-category/:categoryName`
+  - **Descrição:** Obtém todas as subcategorias associadas a uma categoria.
+  - **Exemplo de cURL:**
+    ```bash
+    curl -X GET "http://localhost:5000/api/subcategorys/by-category/Hardware"
+    ```
+
+- **Obter Subcategoria por Nome**
+  - **Endpoint:** `GET /api/subcategorys/:name`
+  - **Descrição:** Obtém uma subcategoria específica pelo nome.
+  - **Exemplo de cURL:**
+    ```bash
+    curl -X GET "http://localhost:5000/api/subcategorys/Laptops"
+    ```
+
+### **Resumo das Rotas**
+
+#### **Equipamentos (Equipment)**
+- `GET /api/equipaments` - Listar todos os equipamentos
+- `GET /api/equipaments/:id` - Obter um equipamento por ID
+- `GET /api/equipaments/by-category/:categoryName/:subcategoryName` - Listar equipamentos por categoria e subcategoria
+
+#### **Categorias (Category)**
+- `GET /api/categorys` - Listar todas as categorias
+- `GET /api/categorys/:name` - Obter uma categoria por nome
+
+#### **Subcategorias (Subcategory)**
+- `GET /api/subcategorys/by-category/:categoryName` - Listar subcategorias por categoria
+- `GET /api/subcategorys/:name` - Obter uma subcategoria por nome
+
+Esses endpoints estão configurados para corresponder às rotas que você especificou nas suas importações e configurações de roteamento no Express.

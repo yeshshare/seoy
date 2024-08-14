@@ -19,6 +19,9 @@ import orderRoutes from './routes/orderRoutes.js';
 import projectRoutes from './routes/projectRoutes.js';
 import movementRoutes from './routes/movementRoutes.js';
 import userRoutes from './routes/userRoutes.js';
+import equipamentRoutes from './routes/equipamentRoute.js';
+import categoryRoutes from './routes/categoryRoutes.js'
+import subcategoryRoutes from './routes/subcategoryRoutes.js'
 
 // Uso das rotas
 app.use('/api/users', userRoutes);
@@ -26,6 +29,10 @@ app.use('/api/stocks', stockRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/projects', projectRoutes);
 app.use('/api/movements', movementRoutes);
+app.use('/api/equipaments', equipamentRoutes);
+app.use('/api/categorys', categoryRoutes);
+app.use('/api/subcategorys', subcategoryRoutes);
+
 
 
 // Configuração do WebSocket

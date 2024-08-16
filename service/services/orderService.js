@@ -1,86 +1,68 @@
-import db from '../config/database.js';
+import Order from '../models/order.js';
 
 // List all orders, considering the filter for isDeleted
 export const listOrders = async (includeDeleted = false) => {
-    const condition = includeDeleted ? '' : 'WHERE isDeleted = 0';
-    return new Promise((resolve, reject) => {
-        db.all(`SELECT * FROM orders ${condition}`, [], (err, rows) => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve(rows);
-            }
-        });
-    });
+    const where = includeDeleted ? {} : { isDeleted: false };
+    try {
+        const orders = await Order.findAll({ where });
+        return orders;
+    } catch (err) {
+        throw new Error(err.message);
+    }
 };
 
 // Create a new order
 export const createOrder = async (data) => {
-    const { customerId, projectId, status } = data;
-    return new Promise((resolve, reject) => {
-        db.run('INSERT INTO orders (customerId, projectId, status) VALUES (?, ?, ?)', [customerId, projectId, status], function (err) {
-            if (err) {
-                reject(err);
-            } else {
-                resolve({ id: this.lastID });
-            }
-        });
-    });
+    try {
+        const order = await Order.create(data);
+        return order;
+    } catch (err) {
+        throw new Error(err.message);
+    }
 };
 
 // Get a specific order by ID, considering the filter for isDeleted
 export const getOrderById = async (id, includeDeleted = false) => {
-    const condition = includeDeleted ? '' : 'AND isDeleted = 0';
-    return new Promise((resolve, reject) => {
-        db.get(`SELECT * FROM orders WHERE id = ? ${condition}`, [id], (err, row) => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve(row);
-            }
-        });
-    });
+    const where = includeDeleted ? { id } : { id, isDeleted: false };
+    try {
+        const order = await Order.findOne({ where });
+        return order;
+    } catch (err) {
+        throw new Error(err.message);
+    }
 };
 
 // Update an existing order
 export const updateOrder = async (id, data) => {
-    const { customerId, projectId, status } = data;
-    return new Promise((resolve, reject) => {
-        db.run('UPDATE orders SET customerId = ?, projectId = ?, status = ? WHERE id = ?', [customerId, projectId, status, id], function (err) {
-            if (err) {
-                reject(err);
-            } else {
-                resolve({ changes: this.changes });
-            }
-        });
-    });
+    try {
+        const [updated] = await Order.update(data, { where: { id } });
+        return updated ? { changes: updated } : null;
+    } catch (err) {
+        throw new Error(err.message);
+    }
 };
 
 // Create or update the order based on its existence in the database
 export const createOrUpdateOrder = async (data) => {
     const { id } = data;
-    return new Promise((resolve, reject) => {
-        db.get('SELECT * FROM orders WHERE id = ?', [id], (err, row) => {
-            if (err) {
-                reject(err);
-            } else if (row) {
-                resolve(updateOrder(id, data));
-            } else {
-                resolve(createOrder(data));
-            }
-        });
-    });
+    try {
+        const order = await Order.findByPk(id);
+        if (order) {
+            return await updateOrder(id, data);
+        } else {
+            return await createOrder(data);
+        }
+    } catch (err) {
+        throw new Error(err.message);
+    }
 };
 
 // Mark an order as deleted (does not physically delete it)
 export const deleteOrder = async (id) => {
-    return new Promise((resolve, reject) => {
-        db.run('UPDATE orders SET isDeleted = 1 WHERE id = ?', [id], function (err) {
-            if (err) {
-                reject(err);
-            } else {
-                resolve({ changes: this.changes });
-            }
-        });
-    });
+    try {
+        const [updated] = await Order.update({ isDeleted: true }, { where: { id } });
+        return updated ? { changes: updated } : null;
+    } catch (err) {
+        throw new Error(err.message);
+    }
 };

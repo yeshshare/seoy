@@ -1,55 +1,43 @@
-import db from '../config/database.js';
+import Movement from '../models/movement.js';
 
 // Register a new movement
-export const registerMovement = (type, stockId, productId, quantity, date) => {
-    return new Promise((resolve, reject) => {
-        db.run('INSERT INTO movements (type, stockId, productId, quantity, date) VALUES (?, ?, ?, ?, ?)', [type, stockId, productId, quantity, date], function (err) {
-            if (err) {
-                reject(err);
-            } else {
-                resolve({ id: this.lastID });
-            }
-        });
-    });
+export const registerMovement = async (type, stockId, productId, quantity, date) => {
+    try {
+        const movement = await Movement.create({ type, stockId, productId, quantity, date });
+        return movement;
+    } catch (err) {
+        throw new Error(err.message);
+    }
 };
 
 // List all movements, considering the filter for isDeleted
-export const listMovements = (includeDeleted = false) => {
-    const query = includeDeleted ? 'SELECT * FROM movements' : 'SELECT * FROM movements WHERE isDeleted = 0';
-    return new Promise((resolve, reject) => {
-        db.all(query, [], (err, rows) => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve(rows);
-            }
-        });
-    });
+export const listMovements = async (includeDeleted = false) => {
+    const where = includeDeleted ? {} : { isDeleted: false };
+    try {
+        const movements = await Movement.findAll({ where });
+        return movements;
+    } catch (err) {
+        throw new Error(err.message);
+    }
 };
 
 // Get a specific movement by ID, considering the filter for isDeleted
-export const getMovementById = (id, includeDeleted = false) => {
-    const query = includeDeleted ? 'SELECT * FROM movements WHERE id = ?' : 'SELECT * FROM movements WHERE id = ? AND isDeleted = 0';
-    return new Promise((resolve, reject) => {
-        db.get(query, [id], (err, row) => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve(row);
-            }
-        });
-    });
+export const getMovementById = async (id, includeDeleted = false) => {
+    const where = includeDeleted ? { id } : { id, isDeleted: false };
+    try {
+        const movement = await Movement.findOne({ where });
+        return movement;
+    } catch (err) {
+        throw new Error(err.message);
+    }
 };
 
 // Mark a movement as deleted (does not physically delete it)
-export const deleteMovement = (id) => {
-    return new Promise((resolve, reject) => {
-        db.run('UPDATE movements SET isDeleted = 1 WHERE id = ?', [id], function (err) {
-            if (err) {
-                reject(err);
-            } else {
-                resolve({ changes: this.changes });
-            }
-        });
-    });
+export const deleteMovement = async (id) => {
+    try {
+        const [updated] = await Movement.update({ isDeleted: true }, { where: { id } });
+        return updated ? { changes: updated } : null;
+    } catch (err) {
+        throw new Error(err.message);
+    }
 };

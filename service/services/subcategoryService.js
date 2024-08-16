@@ -1,26 +1,68 @@
-import Subcategory from '../models/subcategory.js';
-import Category from '../models/category.js'; // Importar o modelo Category
-import db from '../config/database-mysql.js';
+import { Subcategoryservice } from '../models/index.js';
 
-// Serviço para listar subcategorias baseadas em uma categoria
-export const listSubcategories = async (categoriafield) => {
+// List all subcategoryServices, considering the filter for isDeleted
+export const listSubcategoryservices = async (includeDeleted = false) => {
+    const where = includeDeleted ? {} : { isDeleted: false };
     try {
-        // Certifique-se de que a relação entre Category e Subcategory está corretamente definida
-        const subcategories = await Subcategory.findAll({
-            where: { categoriafield },
-            attributes: [[db.Sequelize.fn('DISTINCT', db.Sequelize.col('subcategoriafield')), 'subcategoriafield']]
-        });
-        return subcategories.map(subcategory => subcategory.subcategoriafield);
-    } catch (error) {
-        throw new Error(`Erro ao listar subcategorias: ${error.message}`);
+        const items = await Subcategoryservice.findAll({ where });
+        return items;
+    } catch (err) {
+        throw new Error(err.message);
     }
 };
 
-// Serviço para obter uma subcategoria por nome
-export const getSubcategoryByName = async (name) => {
+// Create a new subcategoryService
+export const createSubcategoryservice = async (data) => {
     try {
-        return await Subcategory.findOne({ where: { subcategoriafield: name } });
-    } catch (error) {
-        throw new Error(`Erro ao obter subcategoria: ${error.message}`);
+        const item = await Subcategoryservice.create(data);
+        return item;
+    } catch (err) {
+        throw new Error(err.message);
+    }
+};
+
+// Get a specific subcategoryService by ID, considering the filter for isDeleted
+export const getSubcategoryserviceById = async (id, includeDeleted = false) => {
+    const where = includeDeleted ? { id } : { id, isDeleted: false };
+    try {
+        const item = await Subcategoryservice.findOne({ where });
+        return item;
+    } catch (err) {
+        throw new Error(err.message);
+    }
+};
+
+// Update an existing subcategoryService
+export const updateSubcategoryservice = async (id, data) => {
+    try {
+        const [updated] = await Subcategoryservice.update(data, { where: { id } });
+        return updated ? { changes: updated } : null;
+    } catch (err) {
+        throw new Error(err.message);
+    }
+};
+
+// Create or update the subcategoryService based on its existence in the database
+export const createOrUpdateSubcategoryservice = async (data) => {
+    const { id } = data;
+    try {
+        const item = await Subcategoryservice.findByPk(id);
+        if (item) {
+            await updateSubcategoryservice(id, data);
+        } else {
+            await createSubcategoryservice(data);
+        }
+    } catch (err) {
+        throw new Error(err.message);
+    }
+};
+
+// Mark a subcategoryService as deleted (does not physically delete it)
+export const deleteSubcategoryservice = async (id) => {
+    try {
+        const [updated] = await Subcategoryservice.update({ isDeleted: true }, { where: { id } });
+        return updated ? { changes: updated } : null;
+    } catch (err) {
+        throw new Error(err.message);
     }
 };

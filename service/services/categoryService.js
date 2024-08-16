@@ -1,23 +1,68 @@
-import Category from '../models/category.js';
-import db from '../config/database-mysql.js';
+import { Categoryservice } from '../models/index.js';
 
-// Serviço para listar todas as categorias
-export const listCategories = async () => {
+// List all categoryServices, considering the filter for isDeleted
+export const listCategoryservices = async (includeDeleted = false) => {
+    const where = includeDeleted ? {} : { isDeleted: false };
     try {
-        const categories = await Category.findAll({
-            attributes: [[db.Sequelize.fn('DISTINCT', db.Sequelize.col('categoriafield')), 'categoriafield']]
-        });
-        return categories.map(category => category.categoriafield);
-    } catch (error) {
-        throw new Error(`Erro ao listar categorias: ${error.message}`);
+        const items = await Categoryservice.findAll({ where });
+        return items;
+    } catch (err) {
+        throw new Error(err.message);
     }
 };
 
-// Serviço para obter uma categoria por nome
-export const getCategoryByName = async (name) => {
+// Create a new categoryService
+export const createCategoryservice = async (data) => {
     try {
-        return await Category.findOne({ where: { categoriafield: name } });
-    } catch (error) {
-        throw new Error(`Erro ao obter categoria: ${error.message}`);
+        const item = await Categoryservice.create(data);
+        return item;
+    } catch (err) {
+        throw new Error(err.message);
+    }
+};
+
+// Get a specific categoryService by ID, considering the filter for isDeleted
+export const getCategoryserviceById = async (id, includeDeleted = false) => {
+    const where = includeDeleted ? { id } : { id, isDeleted: false };
+    try {
+        const item = await Categoryservice.findOne({ where });
+        return item;
+    } catch (err) {
+        throw new Error(err.message);
+    }
+};
+
+// Update an existing categoryService
+export const updateCategoryservice = async (id, data) => {
+    try {
+        const [updated] = await Categoryservice.update(data, { where: { id } });
+        return updated ? { changes: updated } : null;
+    } catch (err) {
+        throw new Error(err.message);
+    }
+};
+
+// Create or update the categoryService based on its existence in the database
+export const createOrUpdateCategoryservice = async (data) => {
+    const { id } = data;
+    try {
+        const item = await Categoryservice.findByPk(id);
+        if (item) {
+            await updateCategoryservice(id, data);
+        } else {
+            await createCategoryservice(data);
+        }
+    } catch (err) {
+        throw new Error(err.message);
+    }
+};
+
+// Mark a categoryService as deleted (does not physically delete it)
+export const deleteCategoryservice = async (id) => {
+    try {
+        const [updated] = await Categoryservice.update({ isDeleted: true }, { where: { id } });
+        return updated ? { changes: updated } : null;
+    } catch (err) {
+        throw new Error(err.message);
     }
 };
